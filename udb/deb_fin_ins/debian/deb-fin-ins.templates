@@ -1,0 +1,8 @@
+Template: deb_fin_ins/reboot
+Type: note
+Description: Installation complete
+ Installation is complete, so it is time to boot into your new system.
+ Make sure to remove the installation media, so that
+ you boot into the new system rather than restarting the installation.
+ .
+ Please choose <Continue> to reboot.

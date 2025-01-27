@@ -1,0 +1,15 @@
+Source: deb-fin-ins
+Section: debian-installer
+Priority: required
+Maintainer: Debian Install System Team <debian-boot@lists.debian.org>
+Uploaders: karthik
+Build-Depends: debhelper-compat (= 13),
+    po-debconf (>= 0.5.0)
+
+Package: deb-fin-ins
+Package-Type: udeb
+Architecture: any
+Provides: deb-ini-sel
+XB-Installer-Menu-Item: 7750
+Depends: ${shlibs:Depends}, ${misc:Depends}, deb-core-sel
+Description: Finish the installation and reboot

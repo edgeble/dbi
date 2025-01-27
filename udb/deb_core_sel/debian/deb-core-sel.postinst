@@ -1,0 +1,60 @@
+#!/bin/sh
+
+. /usr/share/debconf/confmodule
+. /usr/lib/deb-core-sel/library.sh
+
+#echo "Select pre-trained models"
+
+db_input high deb_core_sel/sel || true
+if ! db_go; then
+	exit 10 # back to main menu
+fi
+
+db_get deb_core_sel/sel
+log "selected $RET"
+while [ "$RET" != "deb13" ]
+do
+	
+	db_input critical deb_core_sel/note/deb_core_wip
+	if ! db_go; then
+		exit 10
+	fi
+	db_input high deb_core_sel/sel
+	sleep 1
+	db_get deb_core_sel/sel
+	log "now $RET install"
+done
+
+check_cdl_sel () {
+	db_progress INFO base-installer/debootstrap/section/check_cdl_sel
+	log "ins deb started"
+}
+
+download_deb_img () {
+		db_progress INFO base-installer/debootstrap/section/download_deb_img
+		cd /tmp && wget https://google.com
+		mkdir r && cd r/
+		wget -O deb13.img.gz https://github.com/edgeble-runner/bookworm/releases/download/v1.11/openeia-6tops-bookworm-x11-xfce-v1.11.img.gz
+}
+
+extracting_deb_img (){
+		db_progress INFO base-installer/debootstrap/section/extracting_deb_img
+		gunzip deb13.img.gz
+
+}
+
+install_base_system () {
+		db_progress INFO base-installer/debootstrap/section/install_base_system
+		losetup -P /dev/loop0 ./deb13.img
+		dd bs=4M if=/dev/loop0p5 of=/dev/mmcblk0p4
+		log "base system installed!"
+}
+
+waypoint 1 check_cdl_sel
+waypoint 50 download_deb_img
+waypoint 75 extracting_deb_img
+waypoint 100 install_base_system
+
+run_waypoints base-installer/progress/installing-deb-base
+exit 0
+

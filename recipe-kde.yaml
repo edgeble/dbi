@@ -1,0 +1,45 @@
+# recipe.yaml
+
+{{ $imgname := or .imgname "6tops" }}
+{{ $buildnr := or .buildnr "b0" }}
+{{ $window := or .window "x11" }}
+{{ $desktop := or .desktop "xfce" }}
+
+architecture: arm64
+
+actions:
+- action: recipe
+  recipe: bookworm/ospack.yaml
+  variables:
+    hostname: {{ $imgname }}
+
+- action: recipe
+  recipe: bookworm/winpack.yaml
+  variables:
+    inpack: ospack
+    window: {{ $window }}
+
+- action: recipe
+  recipe: bookworm/deskpack.yaml
+  variables:
+    inpack: winpack
+    desktop: {{ $desktop }}
+    
+- action: recipe
+  recipe: build_deb_installer.yaml
+  variables:
+    inpack: deskpack
+
+- action: recipe
+  recipe: core/core.yaml
+  variables:
+    inpack: deskpack
+    desktop: {{ $desktop }}   
+
+- action: recipe
+  recipe: bookworm/image.yaml
+  variables:
+    inpack: dbi
+    buildnr: {{ $buildnr }}
+    window: {{ $window }}
+    desktop: {{ $desktop }}

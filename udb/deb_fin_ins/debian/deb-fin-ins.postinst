@@ -1,0 +1,20 @@
+#!/bin/sh
+
+. /usr/share/debconf/confmodule
+
+
+db_input critical deb_fin_ins/reboot || [ $? -eq 30 ]
+if ! db_go; then
+	db_progress STOP
+	exit 10
+fi
+
+cd /tmp
+mkdir m/ && cd m/
+mkdir r/
+mount /dev/mmcblk0p3 r/
+cd r/
+mv efi .efi
+log "rebooting system now!"
+
+/lib/debian-installer/exit

@@ -1,0 +1,11 @@
+Package: kernel-image-rk3588
+Source: linux-kernel-di-arm64
+Version: 0.0.1-1
+Architecture: arm64
+Maintainer: Debian Install System Team <debian-boot@lists.debian.org>
+Installed-Size: 2
+Provides: kernel-installer
+Section: debian-installer
+Priority: optional
+Description: Select pretrained models to install
+ select

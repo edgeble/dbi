@@ -1,0 +1,16 @@
+Source: deb-core-sel
+Section: debian-installer
+Priority: optional
+Maintainer: Debian Install System Team <debian-boot@lists.debian.org>
+Uploaders: [...]
+Build-Depends: debhelper-compat (= 13),
+    po-debconf (>= 0.5.0)
+
+Package: deb-core-sel
+Package-Type: udeb
+Architecture: any
+Provides: selected-core
+XB-Installer-Menu-Item: 2100
+Depends: ${shlibs:Depends}, ${misc:Depends}, ethernet-card-detection
+Description: Select the core image to install
+ select

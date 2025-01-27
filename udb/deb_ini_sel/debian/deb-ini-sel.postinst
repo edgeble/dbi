@@ -1,0 +1,24 @@
+#!/bin/sh
+
+. /usr/share/debconf/confmodule
+
+
+db_input high deb_ini_sel/sel || true
+if ! db_go; then
+	exit 10
+fi
+
+db_get deb_ini_sel/sel
+
+if [ "$RET" == "existing" ]; then
+	log "skip base_dbi install"
+	cd /tmp
+	mkdir m/ && cd m/
+	mkdir r/
+	mount /dev/mmcblk0p3 r/
+	cd r/
+	mv efi .efi
+	log "setup next boot"
+	reboot
+	exit 0
+fi

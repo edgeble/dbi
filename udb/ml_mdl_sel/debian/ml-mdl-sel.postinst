@@ -1,0 +1,32 @@
+#!/bin/sh
+
+. /usr/share/debconf/confmodule
+. /usr/lib/ml-mdl-sel/library.sh
+
+#echo "Select pre-trained models"
+
+db_input high ml-mdl-sel/sel || true
+if ! db_go; then
+	exit 10 # back to main menu
+fi
+
+db_get ml-mdl-sel/sel
+
+
+install_base_system () {
+		cd /tmp && wget https://google.com
+		mkdir m/ && cd m/
+		mkdir r/
+		mount /dev/mmcblk0p3 r/
+		cd r/
+		mv efi .efi
+		log "base system installed!"
+		reboot
+}
+
+waypoint 1 check_cdl_sel
+waypoint 1 download mdl
+waypoint 100 install_base_system
+
+run_waypoints
+exit 0

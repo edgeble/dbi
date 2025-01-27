@@ -1,0 +1,7 @@
+Package: kernel-image
+Provides_arm64: drm-core-modules, mmc-core-modules, mtd-core-modules, efi-modules
+Priority: standard
+Description: Linux kernel image and core modules for the Debian installer
+ This package contains the kernel image and core modules for the Debian
+ installer boot images. It does _not_ provide a usable kernel for your full
+ Debian system.

@@ -1,0 +1,16 @@
+Source: deb-ini-sel
+Section: debian-installer
+Priority: optional
+Maintainer: Debian Install System Team <debian-boot@lists.debian.org>
+Uploaders: karthik
+Build-Depends: debhelper-compat (= 13),
+    po-debconf (>= 0.5.0)
+
+Package: deb-ini-sel
+Package-Type: udeb
+Architecture: any
+Provides: deb-ini-sel
+XB-Installer-Menu-Item: 900
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Continue with installer
+ select

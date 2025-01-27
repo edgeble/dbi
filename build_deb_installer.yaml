@@ -1,0 +1,18 @@
+{{ $ospack := or .ospack (printf "%s-%s-%s" $inpack $suite $architecture) }}
+{{ $deskpack := or .deskpack (printf "deskpack-%s-%s" $suite $architecture) }}
+
+architecture: arm64
+
+actions:
+ - action: unpack
+   file: {{ $ospack }}.tar.gz
+   
+ - action: run
+   srcipt: make_deb_i.sh
+   
+ - action: overlay
+   source: boot
+   destination: /boot
+   
+ - action: pack
+   file: dbi.tar.gz

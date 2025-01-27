@@ -1,0 +1,7 @@
+Template: ml-mdl-sel/sel
+Type: multiselect
+Choices: clip, llama3, phi, none
+Choices-C: clip, llama3, phi, none
+Default: none
+Description: Select pre-trained models
+ Select the pre-trained models to install on the system

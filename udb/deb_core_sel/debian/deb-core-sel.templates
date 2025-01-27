@@ -1,0 +1,53 @@
+Template: deb_core_sel/sel
+Type: select
+Choices: Distro (X11 Gnome Yolov5/8), Embedded (Wayland Yolov5/8)
+Choices-C: deb13, emb
+Default: deb13
+Description: Select the core system image
+ Select the image to install on the system
+
+Template: deb_core_sel/progress/check_cdl_sel
+Type: progress
+Description: Check core target
+
+Template: deb_core_sel/progress/download_deb_img
+Type: progress
+Description: Downloading core image
+
+Template: deb_core_sel/progress/extracting_deb_img
+Type: progress
+Description: Extracting core image
+
+Template: deb_core_sel/progress/install_base_system
+Type: progress
+Description: Install base system
+
+
+Template: base-installer/progress/installing-deb-base
+Type: text
+Description: Installing the core image
+
+Template: base-installer/debootstrap/section/check_cdl_sel
+Type: text
+Description: Check core target
+
+Template: base-installer/debootstrap/section/download_deb_img
+Type: text
+Description: Downloading core image
+
+Template: base-installer/debootstrap/section/extracting_deb_img
+Type: text
+Description: Extracting core image
+
+Template: base-installer/debootstrap/section/install_base_system
+Type: text
+Description: Install base system
+
+Template: deb_core_sel/note/deb_core_wip
+Type: note
+Description: Work in progress
+ The selected image currently work in progress. Please select
+ the Distro (X11, Gnome, Yolov5/8) option.
+ .
+ Please choose <Continue> to select again.
+

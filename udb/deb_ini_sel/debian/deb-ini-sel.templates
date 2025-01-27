@@ -1,0 +1,6 @@
+Template: deb_ini_sel/sel
+Type: select
+Choices: Continue with existing image, Install a new image
+Choices-C: existing, deb
+Default: existing
+Description: Choose installer or existing image
