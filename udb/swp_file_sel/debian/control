@@ -1,0 +1,16 @@
+Source: swp-file-sel
+Section: debian-installer
+Priority: optional
+Maintainer: Debian Install System Team <debian-boot@lists.debian.org>
+Uploaders: karthik
+Build-Depends: debhelper-compat (= 13),
+    po-debconf (>= 0.5.0)
+
+Package: swp-file-sel
+Package-Type: udeb
+Architecture: any
+Provides: swap-file-created
+XB-Installer-Menu-Item: 2200
+Depends: ${shlibs:Depends}, ${misc:Depends}, selected-core
+Description: Create swap file
+ select

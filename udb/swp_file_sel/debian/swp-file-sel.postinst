@@ -1,0 +1,45 @@
+#!/bin/sh
+
+. /usr/share/debconf/confmodule
+. /usr/lib/deb-core-sel/library.sh
+
+db_input high swp_file_sel/sel || true
+if ! db_go; then
+	exit 10
+fi
+
+db_get swp_file_sel/sel
+
+SWAP_FILE_SZ = 4G
+
+check_cdl_sel () {
+	db_get swp_file_sel/sel
+	log "selected $RET"
+	SWAP_FILE_SZ = $RET
+	db_progress INFO swp_file_sel/progress/check_cdl_sel
+	log "swap sel started"
+}
+
+create_swp_file () {
+		db_progress INFO swp_file_sel/progress/create_swp_file
+		cd /tmp
+		mkdir m/ && cd m/
+		mkdir r/
+		mount /dev/mmcblk0p4 r/
+		cd r/
+		mkswap -U clear --size $SWAP_FILE_SZ --file ./swapfile
+}
+
+add_fstab_entry () {
+		db_progress INFO swp_file_sel/progress/add_fstab_entry
+		echo "/swapfile none swap defaults 0 0" >> etc/fstab
+		log "swap file success!"
+}
+
+waypoint 1 check_cdl_sel
+waypoint 50 create_swp_file
+waypoint 100 add_fstab_entry
+
+run_waypoints swp_file_sel/progress/check_cdl_sel
+exit 0
+

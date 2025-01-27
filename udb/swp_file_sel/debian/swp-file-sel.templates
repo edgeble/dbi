@@ -1,0 +1,19 @@
+Template: swp_file_sel/sel
+Type: select
+Choices: 4 GB, 8 GB
+Choices-C: 4G, 8G
+Default: 4G
+Description: Select the size of swap file to create
+ Swap file creation
+
+Template: swp_file_sel/progress/check_cdl_sel
+Type: text
+Description: Check core target
+
+Template: swp_file_sel/progress/create_swp_file
+Type: text
+Description: Creating swap file
+
+Template: swp_file_sel/progress/add_fstab_entry
+Type: text
+Description: Adding fstab entries
