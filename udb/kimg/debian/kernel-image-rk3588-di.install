@@ -1,4 +1,4 @@
 vmlinuz /boot
 #initrd.gz /
 rockchip/* /usr/lib/linux-image-6.1.0-29-arm64/rockchip/
-6.1.43-g1d0093132d76 /lib/modules/
+6.1.43-ga72c054db462 /lib/modules/

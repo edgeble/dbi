@@ -1,7 +1,7 @@
 #!/bin/sh
 
 SRC=$(pwd)
-DEB_I_SRC="debian-installer-20230607+deb12u9"
+DEB_I_SRC="debian-installer"
 
 sudo apt install -y devscripts equivs
 
@@ -16,6 +16,18 @@ cp ../ml-mdl-sel*.udeb $SRC/$DEB_I_SRC/build/localudebs/
 cd $SRC/udb/kimg/
 debuild --no-lintian
 cp ../kernel-image-rk3588-di*.udeb $SRC/$DEB_I_SRC/build/localudebs/
+
+cd $SRC/udb/deb_ini_sel/
+debuild --no-lintian
+cp ../deb-ini-sel*.udeb $SRC/$DEB_I_SRC/build/localudebs/
+
+cd $SRC/udb/swp_file_sel/
+debuild --no-lintian
+cp ../swp-file-sel*.udeb $SRC/$DEB_I_SRC/build/localudebs/
+
+cd $SRC/udb/deb_fin_ins/
+debuild --no-lintian
+cp ../deb-fin-ins*.udeb $SRC/$DEB_I_SRC/build/localudebs/
 
 cd $SRC/$DEB_I_SRC/
 mk-build-deps

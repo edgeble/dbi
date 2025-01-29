@@ -10,11 +10,11 @@ if ! db_go; then
 fi
 
 cd /tmp
-mkdir m/ && cd m/
+mkdir p/ && cd p/
 mkdir r/
 mount /dev/mmcblk0p3 r/
 cd r/
 mv efi .efi
-log "rebooting system now!"
+#log "rebooting system now!"
 
 /lib/debian-installer/exit

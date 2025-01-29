@@ -32,9 +32,9 @@ check_cdl_sel () {
 
 download_deb_img () {
 		db_progress INFO base-installer/debootstrap/section/download_deb_img
-		cd /tmp && wget https://google.com
+		cd /tmp
 		mkdir r && cd r/
-		wget -O deb13.img.gz https://github.com/edgeble-runner/bookworm/releases/download/v1.11/openeia-6tops-bookworm-x11-xfce-v1.11.img.gz
+		wget -O deb13.img.gz https://github.com/edgeble-runner/bookworm/releases/download/v1.13/openeia-6tops-bookworm-x11-gnome-v1.13.img.gz
 }
 
 extracting_deb_img (){
@@ -46,7 +46,8 @@ extracting_deb_img (){
 install_base_system () {
 		db_progress INFO base-installer/debootstrap/section/install_base_system
 		losetup -P /dev/loop0 ./deb13.img
-		dd bs=4M if=/dev/loop0p5 of=/dev/mmcblk0p4
+		sleep 3
+		dd bs=4M if=/dev/loop0p4 of=/dev/mmcblk0p4
 		log "base system installed!"
 }
 
